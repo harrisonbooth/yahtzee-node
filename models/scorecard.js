@@ -13,7 +13,7 @@ class Scorecard {
 
   toggleHold(...indices) {
     this.held = [
-      ...indices.filter(index => !this.held.includes(index)),
+      ...indices.filter(index => !this.held.includes(index) && this.dice[index]),
       ...this.held.filter(index => !indices.includes(index))
     ]
   }

@@ -33,17 +33,25 @@ suite('Scorecard', () => {
   })
 
   test('should be able to hold dice', () => {
+    scorecard.roll()
     scorecard.toggleHold(0, 1, 2)
     assert.deepStrictEqual(scorecard.held, [0, 1, 2])
   })
 
   test('should be able to unhold dice', () => {
+    scorecard.roll()
     scorecard.toggleHold(0, 1, 2, 3, 4)
     scorecard.toggleHold(3, 4)
     assert.deepStrictEqual(scorecard.held, [0, 1, 2])
   })
 
+  test('should not be able to hold null', () => {
+    scorecard.toggleHold(0, 1, 2)
+    assert.deepStrictEqual(scorecard.held, [])
+  })
+
   test('should be able to clear held', () => {
+    scorecard.roll()
     scorecard.toggleHold(0, 1, 2)
     scorecard.clearHeld()
     assert.deepStrictEqual(scorecard.held, [])
@@ -63,6 +71,4 @@ suite('Scorecard', () => {
       assert.strictEqual(newScores[2], scores[2])
     }
   })
-
-
 })
