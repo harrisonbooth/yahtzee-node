@@ -94,7 +94,7 @@ suite('Scorer', () => {
     })
 
     test('it should score a yahtzee (present)', () => {
-      assert.strictEqual(scorer.largeStraight([1, 1, 1, 1, 1]), 50)
+      assert.strictEqual(scorer.yahtzee([1, 1, 1, 1, 1]), 50)
     })
 
     test('it should score a yahtzee (not present)', () => {
