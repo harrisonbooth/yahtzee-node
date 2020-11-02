@@ -31,4 +31,33 @@ suite('Scorecard', () => {
       assert.strictEqual(typeof dieValue, 'number')
     })
   })
+
+  test('should be able to hold dice', () => {
+    scorecard.toggleHold(0, 1, 2)
+    assert.deepStrictEqual(scorecard.held, [0, 1, 2])
+  })
+
+  test('should be able to unhold dice', () => {
+    scorecard.toggleHold(0, 1, 2, 3, 4)
+    scorecard.toggleHold(3, 4)
+    assert.deepStrictEqual(scorecard.held, [0, 1, 2])
+  })
+
+  test.skip('should only roll unheld dice', () => {
+    for(let i = 0; i < 20; i++) {
+      scorecard.roll()
+      const scores = scorecard.dice
+      scorecard.toggleHold(0, 1, 2)
+      scorecard.roll()
+      const newScores = scorecard.dice
+
+      assert.strictEqual(newScores[0], scores[0])
+      assert.strictEqual(newScores[1], scores[1])
+      assert.strictEqual(newScores[2], scores[2])
+      assert.notStrictEqual(newScores[3], scores[3])
+      assert.notStrictEqual(newScores[4], scores[4])
+    }
+  })
+
+
 })
