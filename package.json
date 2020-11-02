@@ -1,0 +1,12 @@
+{
+  "name": "yahtzee",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "mocha": "^8.2.0"
+  },
+  "scripts": {
+    "test": "mocha --ui tdd tests/"
+  }
+}
