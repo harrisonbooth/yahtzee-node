@@ -58,6 +58,14 @@ module.exports = {
       return 40
     }
     return 0
+  },
+  yahtzee(dice, bonus=false) {
+    if ([...new Set(dice)].length === 1) {
+      return (bonus) ? 100 : 50
+    }
+    return 0
+  },
+  chance(dice) {
+    return this.sum(dice)
   }
-
 }
