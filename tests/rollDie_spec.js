@@ -1,5 +1,5 @@
 const assert = require('assert')
-const rollDie = require('../models/die')
+const rollDie = require('../models/rollDie')
 
 suite('Die function', () => {
   test('should roll between a 1 and the number passed', () => {
