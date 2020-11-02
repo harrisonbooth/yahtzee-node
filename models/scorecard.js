@@ -6,7 +6,9 @@ class Scorecard {
   }
 
   roll() {
-    this.dice = this.dice.map(this.roller)
+    this.dice = this.dice.map((currentValue, index) => {
+      return (this.held.includes(index)) ? currentValue : this.roller()
+    })
   }
 
   toggleHold(...indices) {
@@ -14,6 +16,10 @@ class Scorecard {
       ...indices.filter(index => !this.held.includes(index)),
       ...this.held.filter(index => !indices.includes(index))
     ]
+  }
+
+  clearHeld() {
+    this.held = []
   }
 }
 

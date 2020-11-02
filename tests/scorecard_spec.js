@@ -43,8 +43,15 @@ suite('Scorecard', () => {
     assert.deepStrictEqual(scorecard.held, [0, 1, 2])
   })
 
-  test.skip('should only roll unheld dice', () => {
+  test('should be able to clear held', () => {
+    scorecard.toggleHold(0, 1, 2)
+    scorecard.clearHeld()
+    assert.deepStrictEqual(scorecard.held, [])
+  })
+
+  test('should only roll unheld dice', () => {
     for(let i = 0; i < 20; i++) {
+      scorecard.clearHeld()
       scorecard.roll()
       const scores = scorecard.dice
       scorecard.toggleHold(0, 1, 2)
@@ -54,8 +61,6 @@ suite('Scorecard', () => {
       assert.strictEqual(newScores[0], scores[0])
       assert.strictEqual(newScores[1], scores[1])
       assert.strictEqual(newScores[2], scores[2])
-      assert.notStrictEqual(newScores[3], scores[3])
-      assert.notStrictEqual(newScores[4], scores[4])
     }
   })
 
