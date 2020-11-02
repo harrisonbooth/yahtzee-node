@@ -51,4 +51,62 @@ suite('Scorer', () => {
       assert.strictEqual(scorer.sixes([1, 1, 1, 1, 1]), 0)
     })
   })
+
+  suite('lower set', () => {
+    test('it should score three of a kind (present)', () => {
+      assert.strictEqual(scorer.threeOfAKind([3, 3, 3, 1, 1]), 11)
+    })
+
+    test('it should score three of a kind (not present)', () => {
+      assert.strictEqual(scorer.threeOfAKind([1, 2, 3, 4, 5]), 0)
+    })
+
+    test('it should score four of a kind (present)', () => {
+      assert.strictEqual(scorer.fourOfAKind([3, 3, 3, 3, 1]), 13)
+    })
+
+    test('it should score four of a kind (not present)', () => {
+      assert.strictEqual(scorer.fourOfAKind([1, 2, 3, 4, 5]), 0)
+    })
+
+    test('it should score a full house (present)', () => {
+      assert.strictEqual(scorer.fullHouse([3, 3, 3, 1, 1]), 25)
+    })
+
+    test('it should score a full house (not present)', () => {
+      assert.strictEqual(scorer.fullHouse([1, 2, 3, 4, 5]), 0)
+    })
+
+    test('it should score a small straight (present)', () => {
+      assert.strictEqual(scorer.smallStraight([1, 2, 3, 4, 1]), 30)
+    })
+
+    test('it should score a small straight (not present)', () => {
+      assert.strictEqual(scorer.smallStraight([1, 1, 1, 1, 1]), 0)
+    })
+
+    test('it shoould score a large straight (present)', () => {
+      assert.strictEqual(scorer.largeStraight([1, 2, 3, 4, 5]), 40)
+    })
+
+    test('it shoould score a large straight (not present)', () => {
+      assert.strictEqual(scorer.largeStraight([1, 2, 3, 4, 1]), 0)
+    })
+
+    test('it should score a yahtzee (present)', () => {
+      assert.strictEqual(scorer.largeStraight([1, 1, 1, 1, 1]), 50)
+    })
+
+    test('it should score a yahtzee (not present)', () => {
+      assert.strictEqual(scorer.yahtzee([1, 1, 1, 1, 3]), 0)
+    })
+
+    test('it should score a yahtzee (with true to signify bonus)', () => {
+      assert.strictEqual(scorer.yahtzee([1, 1, 1, 1, 1], true), 100)
+    })
+
+    test('it should score chance', () => {
+      assert.strictEqual(scorer.chance([1, 2, 2, 3, 3]), 11)
+    })
+  })
 })
