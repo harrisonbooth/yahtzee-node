@@ -1,3 +1,1 @@
-module.exports = function(upperLimit) {
-  return Math.ceil(Math.random() * upperLimit)
-}
+module.exports = upperLimit => Math.ceil(Math.random() * upperLimit)
