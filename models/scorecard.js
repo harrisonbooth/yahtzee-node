@@ -1,8 +1,9 @@
 class Scorecard {
-  constructor(roller) {
+  constructor(roller, scorer) {
     this.dice = [null, null, null, null, null]
     this.held = []
     this.roller = roller
+    this.scorer = scorer
   }
 
   roll() {
@@ -20,6 +21,10 @@ class Scorecard {
 
   clearHeld() {
     this.held = []
+  }
+
+  score(functionName) {
+    return this.scorer[functionName](this.dice)
   }
 }
 

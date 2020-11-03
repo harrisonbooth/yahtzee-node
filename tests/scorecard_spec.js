@@ -1,5 +1,6 @@
 const assert = require('assert')
 const Scorecard = require('../models/scorecard')
+const scorer = require('../models/scorer')
 const rollDie = require('../models/rollDie')
 
 suite('Scorecard', () => {
@@ -7,7 +8,7 @@ suite('Scorecard', () => {
 
   setup(() => {
     const roller = () => rollDie(6)
-    scorecard = new Scorecard(roller)
+    scorecard = new Scorecard(roller, scorer)
   })
 
   test('should have 5 initial null dice', () => {
@@ -70,5 +71,10 @@ suite('Scorecard', () => {
       assert.strictEqual(newScores[1], scores[1])
       assert.strictEqual(newScores[2], scores[2])
     }
+  })
+
+  test('should have scorer', () => {
+    scorecard.roll()
+    assert(scorecard.score('chance') > 0)
   })
 })
